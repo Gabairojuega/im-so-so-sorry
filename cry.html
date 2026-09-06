@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>...</title>
+<style>
+  body {
+    background: #fff;
+    color: #111;
+    font-family: monospace;
+    font-size: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    text-align: center;
+    gap: 40px;
+  }
+  #line {
+    max-width: 600px;
+    line-height: 1.6;
+    opacity: 0;
+    transition: opacity 1.2s;
+  }
+  #line.show {
+    opacity: 1;
+  }
+  #proceedBtn {
+    background: none;
+    border: none;
+    color: #111;
+    font-family: monospace;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 0;
+  }
+  #proceedBtn:hover {
+    text-decoration: underline;
+  }
+  #proceedBtn.hidden {
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+<div id="line"></div>
+<button id="proceedBtn">Proceed</button>
+
+<script>
+  const lines = [
+    "it hurt me",
+    "it hurt",
+    "and yet",
+    "no one helped me"
+  ];
+
+  let index = 0;
+  const lineEl = document.getElementById('line');
+  const btn = document.getElementById('proceedBtn');
+
+  function showLine() {
+    lineEl.classList.remove('show');
+    setTimeout(() => {
+      lineEl.textContent = lines[index];
+      lineEl.classList.add('show');
+      index++;
+      if (index >= lines.length) {
+        btn.classList.add('hidden');
+      }
+    }, 400);
+  }
+
+  btn.addEventListener('click', showLine);
+  showLine();
+</script>
+
+</body>
+</html>
